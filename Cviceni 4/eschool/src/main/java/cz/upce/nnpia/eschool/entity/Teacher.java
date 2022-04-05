@@ -1,5 +1,7 @@
 package cz.upce.nnpia.eschool.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,11 +13,9 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    }, mappedBy = "teachers")
-    private Set<Student> students = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "teacher")
+    private Set<Subject> subjects = new HashSet<>();
 
     @Column(length = 50)
     private String teacherName;
@@ -30,14 +30,6 @@ public class Teacher {
 
     public Teacher(String teacherName){
         this.teacherName = teacherName;
-    }
-
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
     }
 
     public Integer getId() {
@@ -70,5 +62,10 @@ public class Teacher {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    //relationship related methods
+    public Set<Subject> getSubjects() {
+        return subjects;
     }
 }

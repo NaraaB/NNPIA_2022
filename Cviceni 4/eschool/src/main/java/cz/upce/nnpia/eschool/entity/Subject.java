@@ -11,14 +11,20 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    }, mappedBy = "subjects")
-    private Set<Student> students = new HashSet<>();
-
     @Column(length = 50)
     private String subjectName;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacher_id", referencedColumnName = "id")
+    private Teacher teacher;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "student_enrolled",
+            joinColumns = @JoinColumn(name = "subject_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private Set<Student> enrolledStudents = new HashSet<>();
 
     @Lob()
     private String description;
@@ -37,14 +43,6 @@ public class Subject {
         this.id = id;
     }
 
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
-    }
-
     public String getSubjectName() {
         return subjectName;
     }
@@ -61,5 +59,21 @@ public class Subject {
         this.description = description;
     }
 
+    //relationship related methods
 
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void assignTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public Set<Student> getEnrolledStudents() {
+        return enrolledStudents;
+    }
+
+    public void enrollStudent(Student student) {
+        enrolledStudents.add(student);
+    }
 }

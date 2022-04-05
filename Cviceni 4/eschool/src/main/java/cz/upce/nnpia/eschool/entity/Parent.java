@@ -1,6 +1,9 @@
 package cz.upce.nnpia.eschool.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,8 +13,9 @@ public class Parent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany(mappedBy = "id")
-    private Set<Student> students;
+    @JsonIgnore
+    @OneToMany(mappedBy = "parent")
+    private Set<Student> children = new HashSet<>();
 
     @Column(length = 50)
     private String parentName;
@@ -26,14 +30,6 @@ public class Parent {
 
     public Parent(String name){
         this.parentName = name;
-    }
-
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
     }
 
     public Integer getId() {
@@ -66,5 +62,10 @@ public class Parent {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    //relationship related methods
+    public Set<Student> getChildren() {
+        return children;
     }
 }
