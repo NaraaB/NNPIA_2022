@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head ::htmlHead"></head>
+<body>
+<h2>Subject list</h2>
+<section>
+    <div th:replace="fragments/navigation ::navbar"></div>
+    <div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Teacher</th>
+                <th>Description</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="subject : ${subjectList}">
+                <td th:text="${subject.id}"></td>
+                <td ><a th:href="@{/subject-form/{id} (id=${subject.id})}"
+                        th:text="${subject.subjectName}"></a></td>
+                <td th:text="${subject.teacher}"></td>
+                <td th:text="${subject.description}"></td>
+                <td>
+                    <a th:href="@{/subject-delete(id=${subject.id})}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+</body>
+</html>

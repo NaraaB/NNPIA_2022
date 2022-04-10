@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head ::htmlHead"></head>
+<body>
+<h2>Teacher list</h2>
+<section>
+    <div th:replace="fragments/navigation ::navbar"></div>
+    <div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Specialty</th>
+                <th>E-mail</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="teacher : ${teacherList}">
+                <td th:text="${teacher.id}"></td>
+                <td ><a th:href="@{/teacher-form/{id} (id=${teacher.id})}"
+                        th:text="${teacher.teacherName}"></a></td>
+                <td th:text="${teacher.specialty}"></td>
+                <td th:text="${teacher.email}"></td>
+                <td>
+                    <a th:href="@{/teacher-delete(id=${teacher.id})}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+</body>
+</html>

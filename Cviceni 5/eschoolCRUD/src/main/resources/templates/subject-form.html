@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head ::htmlHead"></head>
+<body>
+<h2>Add or Edit subject</h2>
+<section>
+    <form action="#" th:action="@{/subject-form-process}"
+          th:object="${subject}" method="post">
+        <div th:replace="fragments/navigation ::navbar"></div>
+        <div class="grid-container">
+            <input type="hidden" th:field="*{id}" />
+            <div>Name:</div>
+            <div><input type="text" th:field="*{subjectName}" /></div>
+            <div>Description:</div>
+            <div><input type="text" th:field="*{description}" /></div>
+            <div><input type="submit" value="Save" /></div>
+        </div>
+    </form>
+
+</section>
+</body>
+</html>

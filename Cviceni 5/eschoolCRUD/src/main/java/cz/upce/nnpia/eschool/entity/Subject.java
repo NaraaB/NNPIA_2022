@@ -63,6 +63,7 @@ public class Subject {
     public Teacher getTeacher() {
         return teacher;
     }
+    public Integer getTeacherId(){return teacher.getId();}
 
     public void assignTeacher(Teacher teacher) {
         this.teacher = teacher;

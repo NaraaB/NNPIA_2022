@@ -1,0 +1,54 @@
+h2 {
+    font-family: sans-serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+
+strong {
+    font-weight: 700;
+    background-color: yellow;
+}
+
+p {
+    font-family: sans-serif;
+}
+div{
+    padding: 10px;
+}
+table, td, th{
+    border: 1px solid grey;
+}
+table {
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+tr:hover {background-color: lightcyan;}
+th{
+    background-color: darkcyan;
+    color: white;
+}
+.navigation-item{
+    padding: 5px;
+    background-color: lightcyan;
+    display: inline;
+    border: 3px solid darkcyan;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 80px 200px;
+    border: 3px solid darkcyan;
+    background-color: lightcyan;
+    gap: 10px;
+    padding: 10px;
+}
+
+.grid-container > div {
+    text-align: left;
+    font-size: 14px;
+}
