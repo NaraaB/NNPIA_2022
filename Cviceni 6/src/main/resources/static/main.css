@@ -1,0 +1,23 @@
+h2 {
+    font-family: Algerian;
+    color: darkcyan;
+}
+p {
+    font-family: sans-serif;
+}
+
+.grid-container {
+    display: grid;
+    background-color: lightcyan;
+    grid-template-columns: 80px 200px;
+    gap: 10px;
+    padding: 10px;
+}
+.grid-container > div {
+    background-color: lightcyan;
+    color: darkcyan;
+    padding: 10px 0;
+}
+.error{
+    color: darkred;
+}

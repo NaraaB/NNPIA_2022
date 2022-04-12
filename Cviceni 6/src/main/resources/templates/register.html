@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head ::htmlHead"></head>
+<body>
+<h2>New user</h2>
+<form action="#" th:action="@{registering}"
+      th:object="${user}" method="post">
+    <div class="grid-container">
+        <input type="hidden" th:field="*{id}" />
+        <div>Full Name:</div>
+        <div>
+            <input type="text" th:field="*{fullName}" />
+            <span th:errors="*{fullName}" class="error"></span>
+        </div>
+
+        <div>E-mail: </div>
+        <div>
+            <input type="email" th:field="*{email}" />
+            <span th:errors="*{fullName}" class="error"></span>
+        </div>
+
+        <div>Password: </div>
+        <div>
+            <input type="password" th:field="*{password}" />
+            <span th:errors="*{fullName}" class="error"></span>
+        </div>
+
+        <div>User type: </div>
+        <div>
+            <select th:field="*{type}">
+                <option th:value="STUDENT" th:text="Student" selected></option>
+                <option th:value="TEACHER" th:text="Teacher"></option>
+                <option th:value="PARENT" th:text="Parent"></option>
+            </select>
+        </div>
+
+        <div><input type="submit" value="Save" /></div>
+    </div>
+</form>
+</body>
+</html>
